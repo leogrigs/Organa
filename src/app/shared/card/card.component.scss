@@ -1,0 +1,63 @@
+.card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 4px;
+    border-radius: 12px;
+
+    width: fit-content;
+    min-width: 284px;
+
+    font-family: 'Inter', sans-serif;
+
+    border: 1px solid black;
+
+    &-title{
+        // border: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+
+        margin-bottom: 16px;
+    }
+
+    &-description{
+        border: 1px solid black;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        display: flex;
+        min-height: 48px;
+        padding: 4px;
+
+    }
+
+    &-status{
+        // border: 1px solid black;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding: 4px;
+
+        &-text{
+            width: 48px;
+            text-align: center;
+        }
+
+        &-btn{
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            &-img{
+                width: 16px;
+            }
+            &-img-reverse{
+                width: 16px;
+                transform: rotate(180deg);
+            }
+        }
+    }
+}

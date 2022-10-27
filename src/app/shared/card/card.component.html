@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-title">
+        <span>card title</span>
+        <span>card group</span>
+    </div>
+    <div class="card-description">
+        <span>card description</span>
+    </div>
+    <div class="card-status">
+        <button class="card-status-btn" (click)="previousStatus()">
+            <img class="card-status-btn-img-reverse" src="https://images.vexels.com/media/users/3/136479/isolated/preview/72ca95e059828aea4edc31c04b0556ce-proxima-seta-1.png" alt="">
+        </button>
+        <span class="card-status-text">{{cardStatus}}</span>
+        <button class="card-status-btn" (click)="nextStatus()">
+            <img class="card-status-btn-img" src="https://images.vexels.com/media/users/3/136479/isolated/preview/72ca95e059828aea4edc31c04b0556ce-proxima-seta-1.png" alt="">
+        </button>
+    </div>
+</div>
