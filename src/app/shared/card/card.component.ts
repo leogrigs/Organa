@@ -45,4 +45,12 @@ export class CardComponent implements OnInit {
     }
   }
 
+  setStatusClass(){
+    return {
+      'card-status-text-todo': this.cardStatus === 'To Do',
+      'card-status-text-doing': this.cardStatus === 'Doing',
+      'card-status-text-done': this.cardStatus === 'Done',
+    }
+  }
+
 }
