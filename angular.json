@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Organa:build:production",
+            "firebaseProject": "organa-3f307",
+            "firebaseHostingSite": "organa-3f307"
+          }
         }
       }
     }
