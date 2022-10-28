@@ -1,0 +1,97 @@
+.card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f6f4ff;
+    border: 1px solid #7A5CFA;
+
+    margin: 32px;
+
+    padding: 8px;
+    border-radius: 12px;
+
+    width: fit-content;
+    min-width: 284px;
+
+    font-family: 'Inter', sans-serif;
+
+    // border: 1px solid black;
+
+    &-title{
+        // border: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        color: #7A5CFA;
+    }
+
+    &-group{
+        border: 1px solid #e5aaaa;
+        border-radius: 16px;
+        padding: 2px 8px;
+        color: #B20000;
+        background-color: #fbefef;
+    }
+
+    &-description{
+        border: 1px solid black;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        display: flex;
+        min-height: 48px;
+        padding: 4px;
+        color: #666666;
+    }
+
+    &-status{
+        // border: 1px solid black;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding: 4px;
+
+        &-text-todo{
+            width: 48px;
+            text-align: center;
+            color: #7C5A00;
+        }
+        &-text-doing{
+            width: 48px;
+            text-align: center;
+            color: #0085ff;
+        }
+        &-text-done{
+            width: 48px;
+            text-align: center;
+            color: #007e2b;
+        }
+
+        &-btn{
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            &-img{
+                width: 16px;
+            }
+            &-img-reverse{
+                width: 16px;
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &-bottom{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &-timer{
+            &-img{
+                width: 28px;
+            }
+        }
+    }
+}

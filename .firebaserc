@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "organa-3f307": {
+      "hosting": {
+        "Organa": [
+          "organa-3f307"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "organa-3f307"
+  }
+}
