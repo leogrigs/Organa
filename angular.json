@@ -117,5 +117,8 @@
       }
     }
   },
-  "defaultProject": "Organa"
+  "defaultProject": "Organa",
+  "cli": {
+    "analytics": false
+  }
 }
