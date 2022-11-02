@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Card } from 'src/app/core/models/card.model';
 
 @Component({
   selector: 'app-card',
@@ -6,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input('cardStatus') cardStatus: string = 'To Do';
+  @Input() card!: Card;
+
   arrowSource: string = '/assets/img/gray_arrow.svg'
 
   constructor() { }
@@ -15,15 +17,15 @@ export class CardComponent implements OnInit {
   }
 
   nextStatus(){
-    switch (this.cardStatus) {
+    switch (this.card.card_status) {
       case 'To Do':
-        this.cardStatus = 'Doing'
+        this.card.card_status = 'Doing'
         break;
       case 'Doing':
-        this.cardStatus = 'Done'
+        this.card.card_status = 'Done'
         break;
       case 'Done':
-        this.cardStatus = 'To Do'
+        this.card.card_status = 'To Do'
         break;
       default:
         break;
@@ -31,15 +33,15 @@ export class CardComponent implements OnInit {
   }
 
   previousStatus(){
-    switch (this.cardStatus) {
+    switch (this.card.card_status) {
       case 'To Do':
-        this.cardStatus = 'Done'
+        this.card.card_status = 'Done'
         break;
       case 'Doing':
-        this.cardStatus = 'To Do'
+        this.card.card_status = 'To Do'
         break;
       case 'Done':
-        this.cardStatus = 'Doing'
+        this.card.card_status = 'Doing'
         break;
       default:
         break;
@@ -48,17 +50,17 @@ export class CardComponent implements OnInit {
 
   setStatusClass(){
     return {
-      'card-status-text-todo': this.cardStatus === 'To Do',
-      'card-status-text-doing': this.cardStatus === 'Doing',
-      'card-status-text-done': this.cardStatus === 'Done',
+      'card-status-text-todo': this.card.card_status === 'To Do',
+      'card-status-text-doing': this.card.card_status === 'Doing',
+      'card-status-text-done': this.card.card_status === 'Done',
     }
   }
 
   setArrowSource(){
     let color = '';
 
-    if (this.cardStatus === 'To Do') color = 'gray';
-    else if (this.cardStatus === 'Doing') color = 'blue';
+    if (this.card.card_status === 'To Do') color = 'gray';
+    else if (this.card.card_status === 'Doing') color = 'blue';
     else color = 'green';
 
     let url = `/assets/img/${color}_arrow.svg`;

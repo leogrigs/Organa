@@ -5,20 +5,20 @@
         </button>
     </div>
     <div class="card-title">
-        <span>Homework</span>
+        <span>{{card.card_title}}</span>
     </div>
     <div class="card-description">
-        <span>card description</span>
+        <span>{{card.card_description}}</span>
     </div>
     <div class="card-group">
-        <span>Trabalho</span>
+        <span *ngIf="card.card_group">{{card.card_group}}</span>
     </div>
     <div class="card-bottom">
         <div class="card-status">
             <button class="card-status-btn" (click)="previousStatus()">
                 <img class="card-status-btn-img-reverse" [src]="setArrowSource()" alt="">
             </button>
-            <span [ngClass]="setStatusClass()">{{cardStatus}}</span>
+            <span [ngClass]="setStatusClass()">{{card.card_status}}</span>
             <button class="card-status-btn" (click)="nextStatus()">
                 <img class="card-status-btn-img" [src]="setArrowSource()" alt="">
             </button>

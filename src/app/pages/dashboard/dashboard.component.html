@@ -1,3 +1,6 @@
 <div class="dashboard">
-    <app-card></app-card>
+
+    <div class="dashboard-cards">
+        <app-card *ngFor="let card of dashboard.cards" [card]="card"></app-card>
+    </div>
 </div>

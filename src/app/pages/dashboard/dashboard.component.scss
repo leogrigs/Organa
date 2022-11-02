@@ -1,6 +1,11 @@
 .dashboard{
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    align-items: center;
+    &-cards{
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+        align-items: center;
+    
+        background: #F6F8F9;
+        border-radius: 6px 6px 0px 0px;
+    }
 }

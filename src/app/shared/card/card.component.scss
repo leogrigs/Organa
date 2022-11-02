@@ -44,14 +44,17 @@
     &-group{
         display: flex;
         width: min-content;
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 16px;
-        border-radius: 4px;
-        padding: 4px;
-        color: #835101;
-        background-color: #F8DD4E;
         margin-bottom: 16px;
+        height: 24px;
+        span{
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            border-radius: 4px;
+            padding: 4px;
+            color: #835101;
+            background-color: #F8DD4E;
+        }
     }
 
     &-status{
