@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
   @Input('cardStatus') cardStatus: string = 'To Do';
+  arrowSource: string = '/assets/img/gray_arrow.svg'
 
   constructor() { }
 
@@ -51,6 +52,17 @@ export class CardComponent implements OnInit {
       'card-status-text-doing': this.cardStatus === 'Doing',
       'card-status-text-done': this.cardStatus === 'Done',
     }
+  }
+
+  setArrowSource(){
+    let color = '';
+
+    if (this.cardStatus === 'To Do') color = 'gray';
+    else if (this.cardStatus === 'Doing') color = 'blue';
+    else color = 'green';
+
+    let url = `/assets/img/${color}_arrow.svg`;
+    return url;
   }
 
 }

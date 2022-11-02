@@ -1,24 +1,31 @@
 <div class="card">
+    <div class="card-delete">
+        <button class="card-delete-button">
+            <img class="card-delete-icon" src="/assets/img/card_delete.svg" alt="">
+        </button>
+    </div>
     <div class="card-title">
         <span>Homework</span>
-        <span class="card-group">Home</span>
     </div>
     <div class="card-description">
         <span>card description</span>
     </div>
+    <div class="card-group">
+        <span>Trabalho</span>
+    </div>
     <div class="card-bottom">
-        <div class="card-bottom-timer">
-            <button class="card-status-btn">
-                <img class="card-bottom-timer-img" src="https://w7.pngwing.com/pngs/926/994/png-transparent-computer-icons-clock-symbol-clock-purple-violet-time-thumbnail.png" alt="">
-            </button>
-        </div>
         <div class="card-status">
             <button class="card-status-btn" (click)="previousStatus()">
-                <img class="card-status-btn-img-reverse" src="https://images.vexels.com/media/users/3/136479/isolated/preview/72ca95e059828aea4edc31c04b0556ce-proxima-seta-1.png" alt="">
+                <img class="card-status-btn-img-reverse" [src]="setArrowSource()" alt="">
             </button>
             <span [ngClass]="setStatusClass()">{{cardStatus}}</span>
             <button class="card-status-btn" (click)="nextStatus()">
-                <img class="card-status-btn-img" src="https://images.vexels.com/media/users/3/136479/isolated/preview/72ca95e059828aea4edc31c04b0556ce-proxima-seta-1.png" alt="">
+                <img class="card-status-btn-img" [src]="setArrowSource()" alt="">
+            </button>
+        </div>
+        <div class="card-bottom-timer">
+            <button class="card-status-btn">
+                <img class="card-bottom-timer-img" src="assets/img/timer.svg" alt="">
             </button>
         </div>
     </div>
