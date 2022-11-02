@@ -1,5 +1,15 @@
 <div class="dashboard">
+    <h2 class="dashboard-title">Todas as tarefas</h2>
+    <div class="dashboard-upper">
+        <div class="dashboard-search">
+            <img src="/assets/img/search.svg" alt="" class="dashboard-search-icon">
+            <input type="text" class="dashboard-search-input" placeholder="Pesquisar">
+        </div>
+        <button class="dashboard-new_card">
+            + Adicionar tarefa
+        </button>
 
+    </div>
     <div class="dashboard-cards">
         <app-card *ngFor="let card of dashboard.cards" [card]="card"></app-card>
     </div>
