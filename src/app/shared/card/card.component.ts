@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Card } from 'src/app/core/models/card.model';
 
 @Component({
@@ -8,6 +8,7 @@ import { Card } from 'src/app/core/models/card.model';
 })
 export class CardComponent implements OnInit {
   @Input() card!: Card;
+  @Output() OnDelete = new EventEmitter();
 
   arrowSource: string = '/assets/img/gray_arrow.svg'
 
@@ -65,6 +66,10 @@ export class CardComponent implements OnInit {
 
     let url = `/assets/img/${color}_arrow.svg`;
     return url;
+  }
+
+  deleteCard(){
+    this.OnDelete.emit();
   }
 
 }

@@ -9,6 +9,8 @@ import { DataService } from 'src/app/core/services/data/data.service';
 })
 export class DashboardComponent implements OnInit {
   dashboard!: Dashboard;
+  showModal: boolean = false;
+  showModalDel: boolean = false;
 
 
   constructor(private dataService: DataService) {
@@ -16,6 +18,24 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  openModal(type: string){
+    if (type === 'create'){
+      this.showModal = !this.showModal;
+    }
+    else{
+      this.showModalDel = !this.showModalDel;
+    }
+  }
+
+  closeModal(state: boolean, type: string){
+    if (type === 'create') {
+      this.showModal = state;
+    }
+    else{
+      this.showModalDel = state;
+    }
   }
 
 }

@@ -5,12 +5,13 @@
             <img src="/assets/img/search.svg" alt="" class="dashboard-search-icon">
             <input type="text" class="dashboard-search-input" placeholder="Pesquisar">
         </div>
-        <button class="dashboard-new_card">
+        <button class="dashboard-new_card" (click)="openModal('create')">
             + Adicionar tarefa
         </button>
-
     </div>
     <div class="dashboard-cards">
-        <app-card *ngFor="let card of dashboard.cards" [card]="card"></app-card>
+        <app-card *ngFor="let card of dashboard.cards" [card]="card" (OnDelete)="openModal('delete')"></app-card>
     </div>
 </div>
+<app-modal (OnToggle)="closeModal($event, 'create')" *ngIf="this.showModal"></app-modal>
+<app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel"></app-modal>
