@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Dashboard } from 'src/app/core/models/dashboard.model';
 import { DataService } from 'src/app/core/services/data/data.service';
 
@@ -12,9 +13,18 @@ export class DashboardComponent implements OnInit {
   showModal: boolean = false;
   showModalDel: boolean = false;
 
+  formCard!: FormGroup;
 
-  constructor(private dataService: DataService) {
+
+  constructor(private dataService: DataService, private fb: FormBuilder) {
     this.dashboard = this.dataService.getCards();
+    this.formCard = this.fb.group({
+      cardName: [''],
+      cardDescription: [''],
+      cardGroup: [''],
+      cardStatus: ['']
+    })
+    
   }
 
   ngOnInit(): void {

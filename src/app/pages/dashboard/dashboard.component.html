@@ -13,5 +13,29 @@
         <app-card *ngFor="let card of dashboard.cards" [card]="card" (OnDelete)="openModal('delete')"></app-card>
     </div>
 </div>
-<app-modal (OnToggle)="closeModal($event, 'create')" *ngIf="this.showModal"></app-modal>
+<app-modal (OnToggle)="closeModal($event, 'create')" *ngIf="this.showModal">
+    <form action="" [formGroup]="this.formCard" class="form" id="cardForm">
+        <legend>Criar nova tarefa</legend>
+        <div class="form-group">
+            <label for="form-group-input" class="form-group-label">Nome *</label>
+            <input type="text" id="form-group-input" class="form-group-input" placeholder="Minha tarefa">
+        </div>
+        <div class="form-group">
+            <label for="form-group-input" class="form-group-label">Descrição *</label>
+            <textarea name="card-description" id="form-group-textarea" class="form-group-input" form="cardForm" placeholder="Descrição da minha tarefa"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="form-group-input" class="form-group-label">Categoria</label>
+            <select name="" id="" class="form-group-input">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="form-group-input" class="form-group-label">Status *</label>
+            <select name="" id="" class="form-group-input">
+                <option value=""></option>
+            </select>
+        </div>
+    </form>
+</app-modal>
 <app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel"></app-modal>
