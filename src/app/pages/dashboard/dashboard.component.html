@@ -1,41 +1,97 @@
-<div class="dashboard">
+<div class="organa">
+  <div class="filters">
+    <app-filter></app-filter>
+  </div>
+  <div class="dashboard">
     <h2 class="dashboard-title">Todas as tarefas</h2>
     <div class="dashboard-upper">
-        <div class="dashboard-search">
-            <img src="/assets/img/search.svg" alt="" class="dashboard-search-icon">
-            <input type="text" class="dashboard-search-input" placeholder="Pesquisar">
-        </div>
-        <button class="dashboard-new_card" (click)="openModal('create')">
-            + Adicionar tarefa
-        </button>
+      <div class="dashboard-search">
+        <img
+          src="/assets/img/search.svg"
+          alt=""
+          class="dashboard-search-icon"
+        />
+        <input
+          type="text"
+          class="dashboard-search-input"
+          placeholder="Pesquisar"
+        />
+      </div>
+      <button class="dashboard-new_card" (click)="openModal('create')">
+        + Adicionar tarefa
+      </button>
     </div>
     <div class="dashboard-cards">
-        <app-card *ngFor="let card of dashboard.cards" [card]="card" (OnDelete)="openModal('delete')"></app-card>
+      <app-card
+        *ngFor="let card of dashboard.cards"
+        [card]="card"
+        (OnDelete)="openModal('delete')"
+      ></app-card>
     </div>
+  </div>
 </div>
 <app-modal (OnToggle)="closeModal($event, 'create')" *ngIf="this.showModal">
-    <form action="" [formGroup]="this.formCard" class="form" id="cardForm">
-        <legend>Criar nova tarefa</legend>
-        <div class="form-group">
-            <label for="form-group-input" class="form-group-label">Nome *</label>
-            <input type="text" id="form-group-input" class="form-group-input" placeholder="Minha tarefa">
-        </div>
-        <div class="form-group">
-            <label for="form-group-input" class="form-group-label">Descrição *</label>
-            <textarea name="card-description" id="form-group-textarea" class="form-group-input" form="cardForm" placeholder="Descrição da minha tarefa"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="form-group-input" class="form-group-label">Categoria</label>
-            <select name="" id="" class="form-group-input">
-                <option value=""></option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="form-group-input" class="form-group-label">Status *</label>
-            <select name="" id="" class="form-group-input">
-                <option value=""></option>
-            </select>
-        </div>
-    </form>
+  <form action="" [formGroup]="this.formCard" class="form" id="cardForm">
+    <legend>Criar nova tarefa</legend>
+    <div class="form-group">
+      <label for="form-group-input" class="form-group-label">Nome *</label>
+      <input
+        type="text"
+        id="form-group-input"
+        class="form-group-input"
+        placeholder="Minha tarefa"
+      />
+    </div>
+    <div class="form-group">
+      <label for="form-group-input" class="form-group-label">Descrição *</label>
+      <textarea
+        name="card-description"
+        id="form-group-textarea"
+        class="form-group-input"
+        form="cardForm"
+        placeholder="Descrição da minha tarefa"
+      ></textarea>
+    </div>
+    <div class="form-group-flex">
+      <div class="form-group">
+        <label for="form-group-input" class="form-group-label">Categoria</label>
+        <select name="" id="" class="form-group-input">
+          <option value="">Trabalho</option>
+          <option value="">Faculdade</option>
+          <option value="">Saúde</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="form-group-input" class="form-group-label">Status *</label>
+        <select name="" id="" class="form-group-input">
+          <option value="todo">To Do</option>
+          <option value="doing">Doing</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+    </div>
+  </form>
 </app-modal>
-<app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel"></app-modal>
+<app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel">
+  <div class="delete">
+    <h2 class="delete-title">Deseja mesmo excluir essa tarefa?</h2>
+    <p class="delete-text">
+      Excluindo essa tarefa você perderá as suas informações e não será possível
+      resgatá-la.
+    </p>
+    <div class="delete-buttons">
+      <button
+        class="delete-buttons-confirm"
+        (click)="closeModal(false, 'delete')"
+      >
+        Confirmar
+      </button>
+      <button
+        class="delete-button-cancel"
+        (click)="closeModal(false, 'delete')"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</app-modal>

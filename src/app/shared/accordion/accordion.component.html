@@ -1,0 +1,9 @@
+<div class="accordion">
+  <button class="accordion-header" (click)="onToggle()">
+    {{ accordionTitle }}
+    <img src="/assets/img/accordion_arrow.svg" alt="" />
+  </button>
+  <div class="accordion-content" *ngIf="toggle">
+    <ng-content></ng-content>
+  </div>
+</div>

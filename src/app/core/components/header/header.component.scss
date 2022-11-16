@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid #e5e9eb;
+  &-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    &-title {
+      margin: 0;
+    }
+  }
+  &-config {
+  }
+}
