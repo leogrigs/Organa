@@ -1,4 +1,66 @@
 .filter {
   width: 254px;
   margin-top: 32px;
+
+  &-new {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-input {
+      width: 135px;
+      height: 27px;
+      background: #ffffff;
+      border: 1px solid #dde2e4;
+      border-radius: 4px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    &-button {
+      width: 84px;
+      border: none;
+      background: #4094f7;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 24px;
+      color: #eeeeee;
+      cursor: pointer;
+    }
+  }
+
+  &-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    // gap: 12px;
+  }
+
+  &-checkbox {
+    margin-right: 8px;
+  }
+
+  &-label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #252c32;
+  }
+
+  &-groups-group {
+    margin-bottom: 12px;
+  }
+
+  &-all-group {
+    display: flex;
+    align-items: center;
+  }
+
+  &-groups-group {
+    display: flex;
+    align-items: center;
+  }
 }

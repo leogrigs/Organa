@@ -1,28 +1,35 @@
 <div class="filter">
   <div class="filter-new">
-    <input type="checkbox" class="filter-new-input" />
+    <input type="text" class="filter-new-input" placeholder="Nova categoria" />
     <button class="filter-new-button">+ Criar</button>
   </div>
   <div class="filter-all">
-    <input type="checkbox" class="filter-all-checkbox" />
-    <input type="checkbox" class="filter-all-checkbox" />
-    <input type="checkbox" class="filter-all-checkbox" />
+    <div class="filter-all-group" *ngFor="let status of statuses; index as i">
+      <input
+        type="checkbox"
+        class="filter-checkbox"
+        [id]="'filter-all-input_' + i"
+      />
+      <label [for]="'filter-all-input_' + i" class="filter-label">{{
+        status
+      }}</label>
+    </div>
   </div>
   <div class="filter-groups">
-    <app-accordion [accordionTitle]="'Trabalho'">
-      <input type="checkbox" class="filter-groups-checkbox" />
-      <input type="checkbox" class="filter-groups-checkbox" />
-      <input type="checkbox" class="filter-groups-checkbox" />
-    </app-accordion>
-    <app-accordion [accordionTitle]="'Faculdade'">
-      <input type="checkbox" class="filter-groups-checkbox" />
-      <input type="checkbox" class="filter-groups-checkbox" />
-      <input type="checkbox" class="filter-groups-checkbox" />
-    </app-accordion>
-    <app-accordion [accordionTitle]="'Saúde'">
-      <input type="checkbox" class="filter-groups-checkbox" />
-      <input type="checkbox" class="filter-groups-checkbox" />
-      <input type="checkbox" class="filter-groups-checkbox" />
+    <app-accordion *ngFor="let group of groups" [accordionTitle]="group">
+      <div
+        class="filter-groups-group"
+        *ngFor="let status of statuses; index as i"
+      >
+        <input
+          type="checkbox"
+          class="filter-checkbox"
+          [id]="'filter-group-input_' + i"
+        />
+        <label [for]="'filter-group-input_' + i" class="filter-label">{{
+          status
+        }}</label>
+      </div>
     </app-accordion>
   </div>
 </div>
