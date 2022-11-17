@@ -40,6 +40,7 @@
         id="form-group-input"
         class="form-group-input"
         placeholder="Minha tarefa"
+        formControlName="cardName"
       />
     </div>
     <div class="form-group">
@@ -50,26 +51,40 @@
         class="form-group-input"
         form="cardForm"
         placeholder="Descrição da minha tarefa"
+        formControlName="cardDescription"
       ></textarea>
     </div>
     <div class="form-group-flex">
       <div class="form-group">
         <label for="form-group-input" class="form-group-label">Categoria</label>
-        <select name="" id="" class="form-group-input">
-          <option value="">Trabalho</option>
-          <option value="">Faculdade</option>
-          <option value="">Saúde</option>
+        <select
+          name=""
+          id=""
+          class="form-group-input"
+          formControlName="cardGroup"
+        >
+          <option value="Trabalho">Trabalho</option>
+          <option value="Faculdade">Faculdade</option>
+          <option value="Saúde">Saúde</option>
         </select>
       </div>
       <div class="form-group">
         <label for="form-group-input" class="form-group-label">Status *</label>
-        <select name="" id="" class="form-group-input">
+        <select
+          name=""
+          id=""
+          class="form-group-input"
+          formControlName="cardStatus"
+        >
           <option value="todo">To Do</option>
           <option value="doing">Doing</option>
           <option value="done">Done</option>
         </select>
       </div>
     </div>
+    <button class="form-button" type="submit" (click)="onSubmit()">
+      CRIAR TAREFA
+    </button>
   </form>
 </app-modal>
 <app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel">
@@ -79,9 +94,9 @@
       Excluindo essa tarefa você perderá as suas informações e não será possível
       resgatá-la.
     </p>
-    <div class="delete-buttons">
+    <div class="delete-button">
       <button
-        class="delete-buttons-confirm"
+        class="delete-button-confirm"
         (click)="closeModal(false, 'delete')"
       >
         Confirmar

@@ -6,7 +6,7 @@ import { DataService } from 'src/app/core/services/data/data.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   dashboard!: Dashboard;
@@ -15,37 +15,35 @@ export class DashboardComponent implements OnInit {
 
   formCard!: FormGroup;
 
-
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.dashboard = this.dataService.getCards();
     this.formCard = this.fb.group({
       cardName: [''],
       cardDescription: [''],
       cardGroup: [''],
-      cardStatus: ['']
-    })
-    
+      cardStatus: [''],
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  openModal(type: string){
-    if (type === 'create'){
+  openModal(type: string) {
+    if (type === 'create') {
       this.showModal = !this.showModal;
-    }
-    else{
+    } else {
       this.showModalDel = !this.showModalDel;
     }
   }
 
-  closeModal(state: boolean, type: string){
+  closeModal(state: boolean, type: string) {
     if (type === 'create') {
       this.showModal = state;
-    }
-    else{
+    } else {
       this.showModalDel = state;
     }
   }
 
+  onSubmit() {
+    this.closeModal(false, 'create');
+  }
 }
