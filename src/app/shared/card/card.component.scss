@@ -1,113 +1,118 @@
 .card {
-    background-color: #FFF;
-    box-shadow: 0px 0px 1px rgba(26, 32, 36, 0.32), 0px 1px 2px rgba(91, 104, 113, 0.32);
-    border-radius: 6px;
-    margin: 32px;
-    padding: 16px;
-    border-radius: 12px;
-    width: 330px;
-    height: 212px;
+  background-color: #fff;
+  box-shadow: 0px 0px 1px rgba(26, 32, 36, 0.32),
+    0px 1px 2px rgba(91, 104, 113, 0.32);
+  border-radius: 6px;
+  padding: 16px;
+  border-radius: 12px;
+  max-width: 300px;
+  min-height: 212px;
+  width: 100%;
 
-    &-delete{
-        width: 100%;
-        text-align: end;
-        margin-bottom: 8px;
-        &-button{
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-        }
+  &-delete {
+    width: 100%;
+    text-align: end;
+    margin-bottom: 8px;
+    &-button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  &-title {
+    // border: 1px solid black;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #252c32;
+    margin-bottom: 12px;
+  }
+
+  &-description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 12px;
+    padding: 4px;
+  }
+
+  &-group {
+    display: flex;
+    width: min-content;
+    margin-bottom: 16px;
+    height: 24px;
+    span {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      border-radius: 4px;
+      padding: 4px;
+      color: #835101;
+      background-color: #f8dd4e;
+    }
+  }
+
+  &-status {
+    // border: 1px solid black;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 4px;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 20px;
+    color: #6e7c87;
+
+    &-text-todo {
+      width: 48px;
+      text-align: center;
+      color: #6e7c87;
+    }
+    &-text-doing {
+      width: 48px;
+      text-align: center;
+      color: #4094f7;
+    }
+    &-text-done {
+      width: 48px;
+      text-align: center;
+      color: #47d16c;
     }
 
+    &-btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
 
-    &-title{
-        // border: 1px solid black;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 20px;
-        color: #252C32;
-        margin-bottom: 12px;
+      &-img {
+        &-reverse {
+          transform: rotate(180deg);
+        }
+      }
     }
+  }
 
-    
-    &-description{
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 20px;
-        
-        height: 60px;
-        margin-bottom: 12px;
-        padding: 4px;
+  &-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-timer {
+      &-img {
+        width: 24px;
+      }
     }
-    
-    &-group{
-        display: flex;
-        width: min-content;
-        margin-bottom: 16px;
-        height: 24px;
-        span{
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 16px;
-            border-radius: 4px;
-            padding: 4px;
-            color: #835101;
-            background-color: #F8DD4E;
-        }
-    }
+  }
 
-    &-status{
-        // border: 1px solid black;
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        padding: 4px;
+  @media (max-width: 1045px) {
+    max-width: 250px;
+  }
 
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 20px;
-        color: #6E7C87;
-
-        &-text-todo{
-            width: 48px;
-            text-align: center;
-            color: #6E7C87;
-        }
-        &-text-doing{
-            width: 48px;
-            text-align: center;
-            color: #4094F7;
-
-        }
-        &-text-done{
-            width: 48px;
-            text-align: center;
-            color: #47D16C;
-        }
-
-        &-btn{
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-
-            &-img{
-                &-reverse{
-                    transform: rotate(180deg);
-                }
-            }
-        }
-    }
-
-    &-bottom{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        &-timer{
-            &-img{
-                width: 24px;
-            }
-        }
-    }
+  @media (max-width: 665px) {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
 }

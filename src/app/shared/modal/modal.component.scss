@@ -1,35 +1,35 @@
-.modal{
-    &-overlay{
-        background: #000;
-        height: 100vh;
-        left: 0;
-        opacity: 0.5;
-        position: fixed;
-        top: 0;
-        width: 100vw;
-        z-index: 10;
-    }
-    &-content{
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px #333;
-        min-width: 320px;
-        position: fixed;
-        left: 50%;
-        padding: 32px;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 11;
+.modal {
+  &-overlay {
+    background: #000;
+    height: 100vh;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+  }
+  &-content {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #333;
+    min-width: 320px;
+    position: fixed;
+    left: 50%;
+    padding: 32px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
 
-        &-close{
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            &-btn{
-                border: none;
-                background-color: transparent;
-                cursor: pointer;
-            }
-        }
+    &-close {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      &-btn {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
     }
+  }
 }
