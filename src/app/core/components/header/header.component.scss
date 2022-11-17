@@ -1,11 +1,12 @@
 .header {
   width: 100%;
-  padding: 32px;
+  padding: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   border: 1px solid #e5e9eb;
+
   &-logo {
     display: flex;
     justify-content: center;
@@ -15,6 +16,8 @@
       margin: 0;
     }
   }
-  &-config {
+
+  @media (max-width: 1045px) {
+    padding: 16px;
   }
 }

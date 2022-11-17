@@ -20,11 +20,14 @@
 .filters {
   background: #f6f8f9;
   padding: 8px;
+  @media (max-width: 1045px) {
+    display: none;
+  }
 }
 
 .dashboard {
   margin-top: 32px;
-  padding-right: 40px;
+  padding-right: 16px;
   &-title {
     font-weight: 600;
     font-size: 24px;
@@ -36,20 +39,23 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
+    gap: 8px;
+    @media (max-width: 665px) {
+      flex-direction: column;
+    }
   }
   &-search {
+    position: relative;
     &-icon {
-      position: relative;
-      top: 8%;
-      right: 94%;
-      // Ou
-      //   position: absolute;
-      //   top: 105px;
-      //   left: 16px;
+      position: absolute;
+      top: 2px;
+      transform: translate(-50%, 50%);
+      left: 16px;
     }
     &-input {
+      box-sizing: border-box;
       width: 302px;
-      height: 32px;
+      min-height: 38px;
       border: 1px solid #dde2e4;
       border-radius: 4px;
       padding: 2px 32px;
@@ -58,11 +64,14 @@
       font-size: 14px;
       line-height: 24px;
       color: #9aa6ac;
+
+      @media (max-width: 665px) {
+        width: 100%;
+      }
     }
   }
   &-new_card {
     width: 158px;
-    height: 27px;
 
     font-weight: 600;
     font-size: 12px;
@@ -73,6 +82,12 @@
     background-color: #4094f7;
     border-radius: 4px;
     cursor: pointer;
+
+    min-height: 38px;
+
+    @media (max-width: 665px) {
+      width: 100%;
+    }
   }
 
   &-cards {
@@ -80,9 +95,14 @@
     justify-content: start;
     flex-wrap: wrap;
     align-items: center;
-
+    gap: 16px;
+    padding: 16px;
     background: #f6f8f9;
     border-radius: 6px 6px 0px 0px;
+  }
+
+  @media (max-width: 1045px) {
+    padding: 16px;
   }
 }
 
