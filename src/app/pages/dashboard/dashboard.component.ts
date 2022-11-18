@@ -12,26 +12,30 @@ export class DashboardComponent implements OnInit {
   dashboard!: Dashboard;
   showModal: boolean = false;
   showModalDel: boolean = false;
+  actualCardTitle!: string;
 
   formCard!: FormGroup;
 
   constructor(private dataService: DataService, private fb: FormBuilder) {
-    this.dashboard = this.dataService.getCards();
+    this.dataService.dbDashboard.valueChanges().subscribe((dash) => {
+      this.dashboard = dash[0];
+    });
     this.formCard = this.fb.group({
-      cardName: [''],
-      cardDescription: [''],
-      cardGroup: [''],
-      cardStatus: [''],
+      card_title: [''],
+      card_description: [''],
+      card_group: [''],
+      card_status: [''],
     });
   }
 
   ngOnInit(): void {}
 
-  openModal(type: string) {
+  openModal(type: string, title: string) {
     if (type === 'create') {
       this.showModal = !this.showModal;
     } else {
       this.showModalDel = !this.showModalDel;
+      this.actualCardTitle = title;
     }
   }
 
@@ -43,7 +47,21 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  onDelete() {
+    this.dashboard.cards = this.dashboard.cards.filter(
+      (card) => card.card_title !== this.actualCardTitle
+    );
+    this.dataService.dbDashboard
+      .doc('dB6Y7wKB8Ki5vngQQG0Y')
+      .update(this.dashboard);
+    this.closeModal(false, 'delete');
+  }
+
   onSubmit() {
+    this.dashboard.cards.push(this.formCard.value);
+    this.dataService.dbDashboard
+      .doc('dB6Y7wKB8Ki5vngQQG0Y')
+      .update(this.dashboard);
     this.closeModal(false, 'create');
   }
 }

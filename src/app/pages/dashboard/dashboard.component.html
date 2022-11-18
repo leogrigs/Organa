@@ -17,7 +17,7 @@
           class="dashboard-search-icon"
         />
       </div>
-      <button class="dashboard-new_card" (click)="openModal('create')">
+      <button class="dashboard-new_card" (click)="openModal('create', '')">
         + Adicionar tarefa
       </button>
     </div>
@@ -25,7 +25,7 @@
       <app-card
         *ngFor="let card of dashboard.cards"
         [card]="card"
-        (OnDelete)="openModal('delete')"
+        (OnDelete)="openModal('delete', $event)"
       ></app-card>
     </div>
   </div>
@@ -40,7 +40,7 @@
         id="form-group-input"
         class="form-group-input"
         placeholder="Minha tarefa"
-        formControlName="cardName"
+        formControlName="card_title"
       />
     </div>
     <div class="form-group">
@@ -51,7 +51,7 @@
         class="form-group-input"
         form="cardForm"
         placeholder="Descrição da minha tarefa"
-        formControlName="cardDescription"
+        formControlName="card_description"
       ></textarea>
     </div>
     <div class="form-group-flex">
@@ -61,7 +61,7 @@
           name=""
           id=""
           class="form-group-input"
-          formControlName="cardGroup"
+          formControlName="card_group"
         >
           <option value="Trabalho">Trabalho</option>
           <option value="Faculdade">Faculdade</option>
@@ -74,17 +74,15 @@
           name=""
           id=""
           class="form-group-input"
-          formControlName="cardStatus"
+          formControlName="card_status"
         >
-          <option value="todo">To Do</option>
-          <option value="doing">Doing</option>
-          <option value="done">Done</option>
+          <option value="To Do">To Do</option>
+          <option value="Doing">Doing</option>
+          <option value="Done">Done</option>
         </select>
       </div>
     </div>
-    <button class="form-button" type="submit" (click)="onSubmit()">
-      CRIAR TAREFA
-    </button>
+    <button class="form-button" (click)="onSubmit()">CRIAR TAREFA</button>
   </form>
 </app-modal>
 <app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel">
@@ -95,10 +93,7 @@
       resgatá-la.
     </p>
     <div class="delete-button">
-      <button
-        class="delete-button-confirm"
-        (click)="closeModal(false, 'delete')"
-      >
+      <button class="delete-button-confirm" (click)="onDelete()">
         Confirmar
       </button>
       <button

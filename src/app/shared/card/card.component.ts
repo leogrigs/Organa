@@ -4,60 +4,59 @@ import { Card } from 'src/app/core/models/card.model';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
   @Input() card!: Card;
   @Output() OnDelete = new EventEmitter();
 
-  arrowSource: string = '/assets/img/gray_arrow.svg'
+  arrowSource: string = '/assets/img/gray_arrow.svg';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  nextStatus(){
+  nextStatus() {
     switch (this.card.card_status) {
       case 'To Do':
-        this.card.card_status = 'Doing'
+        this.card.card_status = 'Doing';
         break;
       case 'Doing':
-        this.card.card_status = 'Done'
+        this.card.card_status = 'Done';
         break;
       case 'Done':
-        this.card.card_status = 'To Do'
+        this.card.card_status = 'To Do';
         break;
       default:
         break;
     }
   }
 
-  previousStatus(){
+  previousStatus() {
     switch (this.card.card_status) {
       case 'To Do':
-        this.card.card_status = 'Done'
+        this.card.card_status = 'Done';
         break;
       case 'Doing':
-        this.card.card_status = 'To Do'
+        this.card.card_status = 'To Do';
         break;
       case 'Done':
-        this.card.card_status = 'Doing'
+        this.card.card_status = 'Doing';
         break;
       default:
         break;
     }
   }
 
-  setStatusClass(){
+  setStatusClass() {
     return {
       'card-status-text-todo': this.card.card_status === 'To Do',
       'card-status-text-doing': this.card.card_status === 'Doing',
       'card-status-text-done': this.card.card_status === 'Done',
-    }
+    };
   }
 
-  setArrowSource(){
+  setArrowSource() {
     let color = '';
 
     if (this.card.card_status === 'To Do') color = 'gray';
@@ -68,8 +67,7 @@ export class CardComponent implements OnInit {
     return url;
   }
 
-  deleteCard(){
-    this.OnDelete.emit();
+  deleteCard() {
+    this.OnDelete.emit(this.card.card_title);
   }
-
 }
