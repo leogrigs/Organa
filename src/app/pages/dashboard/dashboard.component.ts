@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Card } from 'src/app/core/models/card.model';
 import { Dashboard } from 'src/app/core/models/dashboard.model';
 import { DataService } from 'src/app/core/services/data/data.service';
+import { data } from '../../core/utils/mock/data';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,9 @@ export class DashboardComponent implements OnInit {
   cards!: Card[];
   showModal: boolean = false;
   showModalDel: boolean = false;
+  showModalEdit: boolean = false;
   actualCardTitle!: string;
+  actualCard!: Card;
   filteredDashboard!: Dashboard;
   innerValue!: string;
 
@@ -24,12 +27,6 @@ export class DashboardComponent implements OnInit {
     this.dataService.dbDashboard.valueChanges().subscribe((dash) => {
       this.dashboard = dash[0];
       this.cards = dash[0].cards;
-    });
-    this.formCard = this.fb.group({
-      card_title: [''],
-      card_description: [''],
-      card_group: [''],
-      card_status: [''],
     });
   }
 
@@ -41,26 +38,50 @@ export class DashboardComponent implements OnInit {
 
   set filter(value: string) {
     this.innerValue = value;
-    this.cards = this.dashboard.cards.filter(
-      (card) =>
+    this.cards = this.dashboard.cards.filter((card) => {
+      return (
         card.card_title
           .toLowerCase()
+          .indexOf(this.innerValue.toLocaleLowerCase()) > -1 ||
+        card.card_description
+          .toLowerCase()
           .indexOf(this.innerValue.toLocaleLowerCase()) > -1
-    );
+      );
+    });
   }
 
-  openModal(type: string, title: string) {
+  filterByStatus(object: any) {
+    console.log(object);
+
+    if (object.value === true) {
+      this.cards = this.dashboard.cards.filter((card) => {
+        return card.card_status === object.value;
+      });
+    }
+  }
+
+  newGroup(groupName: string) {
+    this.dashboard.groups.push(groupName);
+    this.updateDashboard();
+  }
+
+  openModal(type: string, event: any) {
     if (type === 'create') {
       this.showModal = !this.showModal;
+    } else if (type === 'edit') {
+      this.showModalEdit = !this.showModalEdit;
+      this.actualCard = event;
     } else {
       this.showModalDel = !this.showModalDel;
-      this.actualCardTitle = title;
+      this.actualCardTitle = event;
     }
   }
 
   closeModal(state: boolean, type: string) {
     if (type === 'create') {
       this.showModal = state;
+    } else if (type === 'edit') {
+      this.showModalEdit = state;
     } else {
       this.showModalDel = state;
     }
@@ -76,11 +97,22 @@ export class DashboardComponent implements OnInit {
     this.closeModal(false, 'delete');
   }
 
-  onSubmit() {
-    this.dashboard.cards.push(this.formCard.value);
+  onSubmit(values: Card) {
+    this.dashboard.cards.push(values);
+    this.updateDashboard();
+    this.closeModal(false, 'create');
+  }
+
+  onEdit(values: Card) {
+    let index = this.dashboard.cards.indexOf(this.actualCard);
+    this.dashboard.cards[index] = values;
+    this.updateDashboard();
+    this.closeModal(false, 'edit');
+  }
+
+  updateDashboard() {
     this.dataService.dbDashboard
       .doc('dB6Y7wKB8Ki5vngQQG0Y')
       .update(this.dashboard);
-    this.closeModal(false, 'create');
   }
 }

@@ -1,5 +1,6 @@
-import { Card } from "./card.model";
+import { Card } from './card.model';
 
-export interface Dashboard{
-    cards: Card[];
+export interface Dashboard {
+  cards: Card[];
+  groups: string[];
 }

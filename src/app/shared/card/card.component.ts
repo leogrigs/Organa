@@ -9,6 +9,7 @@ import { Card } from 'src/app/core/models/card.model';
 export class CardComponent implements OnInit {
   @Input() card!: Card;
   @Output() OnDelete = new EventEmitter();
+  @Output() OnEdit = new EventEmitter();
 
   arrowSource: string = '/assets/img/gray_arrow.svg';
 
@@ -69,5 +70,8 @@ export class CardComponent implements OnInit {
 
   deleteCard() {
     this.OnDelete.emit(this.card.card_title);
+  }
+  editCard() {
+    this.OnEdit.emit(this.card);
   }
 }

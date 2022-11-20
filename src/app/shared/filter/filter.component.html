@@ -1,7 +1,18 @@
 <div class="filter">
   <div class="filter-new">
-    <input type="text" class="filter-new-input" placeholder="Nova categoria" />
-    <button class="filter-new-button">+ Criar</button>
+    <input
+      type="text"
+      class="filter-new-input"
+      placeholder="Nova categoria"
+      [(ngModel)]="group"
+    />
+    <button
+      class="filter-new-button"
+      (click)="newGroup()"
+      [disabled]="!this.innerValue"
+    >
+      + Criar
+    </button>
   </div>
   <div class="filter-all">
     <div class="filter-all-group" *ngFor="let status of statuses; index as i">

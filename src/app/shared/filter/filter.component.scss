@@ -28,6 +28,11 @@
       line-height: 24px;
       color: #eeeeee;
       cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: rgba(#4094f7, 0.5);
+      }
     }
   }
 

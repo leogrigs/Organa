@@ -1,6 +1,10 @@
 <div class="organa">
   <div class="filters">
-    <app-filter></app-filter>
+    <app-filter
+      [groups]="dashboard.groups"
+      (OnNewGroup)="newGroup($event)"
+      (OnFilterByStatus)="filterByStatus($event)"
+    ></app-filter>
   </div>
   <div class="dashboard">
     <h2 class="dashboard-title">Todas as tarefas</h2>
@@ -22,69 +26,34 @@
         + Adicionar tarefa
       </button>
     </div>
-    <div class="dashboard-cards">
-      <app-card
-        *ngFor="let card of cards"
-        [card]="card"
-        (OnDelete)="openModal('delete', $event)"
-      ></app-card>
+    <div class="dashboard-container">
+      <div class="dashboard-cards">
+        <app-card
+          *ngFor="let card of cards"
+          [card]="card"
+          (OnDelete)="openModal('delete', $event)"
+          (OnEdit)="openModal('edit', $event)"
+        ></app-card>
+      </div>
     </div>
   </div>
 </div>
 <app-modal (OnToggle)="closeModal($event, 'create')" *ngIf="this.showModal">
-  <form action="" [formGroup]="this.formCard" class="form" id="cardForm">
-    <legend>Criar nova tarefa</legend>
-    <div class="form-group">
-      <label for="form-group-input" class="form-group-label">Nome *</label>
-      <input
-        type="text"
-        id="form-group-input"
-        class="form-group-input"
-        placeholder="Minha tarefa"
-        formControlName="card_title"
-      />
-    </div>
-    <div class="form-group">
-      <label for="form-group-input" class="form-group-label">Descrição *</label>
-      <textarea
-        name="card-description"
-        id="form-group-textarea"
-        class="form-group-input"
-        form="cardForm"
-        placeholder="Descrição da minha tarefa"
-        formControlName="card_description"
-      ></textarea>
-    </div>
-    <div class="form-group-flex">
-      <div class="form-group">
-        <label for="form-group-input" class="form-group-label">Categoria</label>
-        <select
-          name=""
-          id=""
-          class="form-group-input"
-          formControlName="card_group"
-        >
-          <option value="Trabalho">Trabalho</option>
-          <option value="Faculdade">Faculdade</option>
-          <option value="Saúde">Saúde</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="form-group-input" class="form-group-label">Status *</label>
-        <select
-          name=""
-          id=""
-          class="form-group-input"
-          formControlName="card_status"
-        >
-          <option value="To Do">To Do</option>
-          <option value="Doing">Doing</option>
-          <option value="Done">Done</option>
-        </select>
-      </div>
-    </div>
-    <button class="form-button" (click)="onSubmit()">CRIAR TAREFA</button>
-  </form>
+  <app-card-form
+    (OnSubmit)="onSubmit($event)"
+    [formTitle]="'Criar nova tarefa'"
+    [groups]="dashboard.groups"
+    [buttonTitle]="'CRIAR TAREFA'"
+  ></app-card-form>
+</app-modal>
+<app-modal (OnToggle)="closeModal($event, 'edit')" *ngIf="this.showModalEdit">
+  <app-card-form
+    (OnSubmit)="onEdit($event)"
+    [card]="actualCard"
+    [groups]="dashboard.groups"
+    [formTitle]="'Editar tarefa'"
+    [buttonTitle]="'EDITAR TAREFA'"
+  ></app-card-form>
 </app-modal>
 <app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel">
   <div class="delete">

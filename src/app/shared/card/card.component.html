@@ -1,32 +1,39 @@
 <div class="card">
-    <div class="card-delete">
-        <button class="card-delete-button" (click)="deleteCard()">
-            <img class="card-delete-icon" src="/assets/img/card_delete.svg" alt="">
-        </button>
+  <div class="card-delete">
+    <button class="card-delete-button" (click)="editCard()">
+      <img class="card-delete-icon" src="/assets/img/edit.svg" alt="" />
+    </button>
+    <button class="card-delete-button" (click)="deleteCard()">
+      <img class="card-delete-icon" src="/assets/img/card_delete.svg" alt="" />
+    </button>
+  </div>
+  <div class="card-title">
+    <span>{{ card.card_title }}</span>
+  </div>
+  <div class="card-description">
+    <span>{{ card.card_description }}</span>
+  </div>
+  <div class="card-group">
+    <span *ngIf="card.card_group">{{ card.card_group }}</span>
+  </div>
+  <div class="card-bottom">
+    <div class="card-status">
+      <button class="card-status-btn" (click)="previousStatus()">
+        <img
+          class="card-status-btn-img-reverse"
+          [src]="setArrowSource()"
+          alt=""
+        />
+      </button>
+      <span [ngClass]="setStatusClass()">{{ card.card_status }}</span>
+      <button class="card-status-btn" (click)="nextStatus()">
+        <img class="card-status-btn-img" [src]="setArrowSource()" alt="" />
+      </button>
     </div>
-    <div class="card-title">
-        <span>{{card.card_title}}</span>
+    <div class="card-bottom-timer">
+      <button class="card-status-btn">
+        <img class="card-bottom-timer-img" src="assets/img/timer.svg" alt="" />
+      </button>
     </div>
-    <div class="card-description">
-        <span>{{card.card_description}}</span>
-    </div>
-    <div class="card-group">
-        <span *ngIf="card.card_group">{{card.card_group}}</span>
-    </div>
-    <div class="card-bottom">
-        <div class="card-status">
-            <button class="card-status-btn" (click)="previousStatus()">
-                <img class="card-status-btn-img-reverse" [src]="setArrowSource()" alt="">
-            </button>
-            <span [ngClass]="setStatusClass()">{{card.card_status}}</span>
-            <button class="card-status-btn" (click)="nextStatus()">
-                <img class="card-status-btn-img" [src]="setArrowSource()" alt="">
-            </button>
-        </div>
-        <div class="card-bottom-timer">
-            <button class="card-status-btn">
-                <img class="card-bottom-timer-img" src="assets/img/timer.svg" alt="">
-            </button>
-        </div>
-    </div>
+  </div>
 </div>
