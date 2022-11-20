@@ -10,6 +10,7 @@
           type="text"
           class="dashboard-search-input"
           placeholder="Pesquisar"
+          [(ngModel)]="filter"
         />
         <img
           src="/assets/img/search.svg"
@@ -23,7 +24,7 @@
     </div>
     <div class="dashboard-cards">
       <app-card
-        *ngFor="let card of dashboard.cards"
+        *ngFor="let card of cards"
         [card]="card"
         (OnDelete)="openModal('delete', $event)"
       ></app-card>
