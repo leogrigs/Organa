@@ -20,8 +20,13 @@ export class DashboardComponent implements OnInit {
   actualCard!: Card;
   filteredDashboard!: Dashboard;
   innerValue!: string;
-
   formCard!: FormGroup;
+
+  statusesState: any = {
+    'To Do': false,
+    'Doing': false,
+    'Done': false
+  }
 
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.dataService.dbDashboard.valueChanges().subscribe((dash) => {
@@ -50,14 +55,36 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  filterByStatus(object: any) {
-    console.log(object);
+  filterByStatus(object: {status: boolean, value: 'To Do' | 'Doing' | 'Done'}) {
+    let value = object.value;
+    this.statusesState[value] = object.status;
+    this.makeFilter();
+    
+  }
 
-    if (object.value === true) {
-      this.cards = this.dashboard.cards.filter((card) => {
-        return card.card_status === object.value;
-      });
+  makeFilter(){
+    let allTrue = Object.values(this.statusesState).every((status)=>status === true);
+    let allFalse = Object.values(this.statusesState).every((status)=>status === false);
+    if (allTrue || allFalse) {
+      this.cards = this.dashboard.cards;
     }
+    else {
+      this.cards = this.dashboard.cards.filter((card)=>{
+        return this.statusesCheked().indexOf(card.card_status) > -1;
+      })
+    }
+  }
+
+  statusesCheked(){
+    let result: any = []
+    Object.keys(this.statusesState).forEach((value: any)=>{
+      if(this.statusesState[value]){
+        result.push(value);
+      }
+    })
+    console.log(result);
+    
+    return result;
   }
 
   newGroup(groupName: string) {
@@ -108,6 +135,12 @@ export class DashboardComponent implements OnInit {
     this.dashboard.cards[index] = values;
     this.updateDashboard();
     this.closeModal(false, 'edit');
+  }
+
+  onStatusChange(object: {beforeCard: Card, newCard: Card}){
+    let index = this.dashboard.cards.indexOf(object.beforeCard);
+    this.dashboard.cards[index] = object.newCard;
+    this.updateDashboard();
   }
 
   updateDashboard() {

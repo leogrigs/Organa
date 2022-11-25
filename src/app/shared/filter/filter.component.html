@@ -20,6 +20,8 @@
         type="checkbox"
         class="filter-checkbox"
         [id]="'filter-all-input_' + i"
+        (change)="valueChanges($event)"
+        [value]="status"
       />
       <label [for]="'filter-all-input_' + i" class="filter-label">{{
         status

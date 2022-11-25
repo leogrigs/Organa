@@ -10,6 +10,7 @@ export class CardComponent implements OnInit {
   @Input() card!: Card;
   @Output() OnDelete = new EventEmitter();
   @Output() OnEdit = new EventEmitter();
+  @Output() OnEditStatus = new EventEmitter();
 
   arrowSource: string = '/assets/img/gray_arrow.svg';
 
@@ -18,6 +19,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {}
 
   nextStatus() {
+    let beforeCard = this.card;
     switch (this.card.card_status) {
       case 'To Do':
         this.card.card_status = 'Doing';
@@ -31,9 +33,11 @@ export class CardComponent implements OnInit {
       default:
         break;
     }
+    this.sendStatus(beforeCard, this.card);
   }
 
   previousStatus() {
+    let beforeCard = this.card;
     switch (this.card.card_status) {
       case 'To Do':
         this.card.card_status = 'Done';
@@ -47,6 +51,11 @@ export class CardComponent implements OnInit {
       default:
         break;
     }
+    this.sendStatus(beforeCard, this.card);
+  }
+
+  sendStatus(beforeCard: Card, actualCard: Card){
+    this.OnEditStatus.emit({before: beforeCard, after: actualCard});
   }
 
   setStatusClass() {

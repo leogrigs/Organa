@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class FilterComponent implements OnInit {
   @Input() groups!: string[];
   @Output() OnNewGroup = new EventEmitter<string>();
+  @Output() OnFilterByStatus = new EventEmitter<{status: boolean, value: 'To Do' | 'Doing' | 'Done'}>();
 
   statuses = ['To Do', 'Doing', 'Done'];
   innerValue!: string;
@@ -29,5 +30,14 @@ export class FilterComponent implements OnInit {
       this.OnNewGroup.emit(this.group);
       this.group = '';
     }
+  }
+
+  valueChanges(event: any){
+    
+    this.OnFilterByStatus.emit({
+      status: event.target.checked,
+      value: event.target.value
+    })
+    
   }
 }

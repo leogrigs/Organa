@@ -33,6 +33,7 @@
           [card]="card"
           (OnDelete)="openModal('delete', $event)"
           (OnEdit)="openModal('edit', $event)"
+          (OnEditStatus)="onStatusChange($event)"
         ></app-card>
       </div>
     </div>
