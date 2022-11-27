@@ -27,20 +27,15 @@ export class DashboardComponent implements OnInit {
   innerValue!: string;
   formCard!: FormGroup;
 
-  statusesState: any = {
-    'To Do': false,
-    Doing: false,
-    Done: false,
-  };
-
   groupsStates: string[] = [];
+  statusesStates: string[] = [];
 
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.dataService.dbDashboard.valueChanges().subscribe((dash) => {
       this.dashboard = dash[0];
       this.cards = dash[0].cards;
       this.groups = dash[0].groups;
-      this.makeFilter();
+      this.makeFilter2();
     });
   }
 
@@ -64,16 +59,19 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  filterByStatus(object: {
-    status: boolean;
-    value: 'To Do' | 'Doing' | 'Done';
-  }) {
+  filterByStatus(object: { status: boolean; value: string }) {
     let value = object.value;
-    this.statusesState[value] = object.status;
-    this.makeFilter();
+    let status = object.status;
+    if (status) {
+      this.statusesStates.push(value);
+    } else {
+      let index = this.statusesStates.indexOf(value);
+      this.statusesStates.splice(index, 1);
+    }
+    this.makeFilter2();
   }
 
-  filterByStatusGroup(object: { status: boolean; value: string }) {
+  filterByGroup(object: { status: boolean; value: string }) {
     let value = object.value;
     let status = object.status;
     if (status) {
@@ -82,23 +80,22 @@ export class DashboardComponent implements OnInit {
       let index = this.groupsStates.indexOf(value);
       this.groupsStates.splice(index, 1);
     }
-    this.makeFilterGroup();
+    this.makeFilter2();
   }
 
-  makeFilter() {
-    let allTrue = Object.values(this.statusesState).every(
-      (status) => status === true
-    );
-    let allFalse = Object.values(this.statusesState).every(
-      (status) => status === false
-    );
-    if (allTrue || allFalse) {
-      this.cards = this.dashboard.cards;
-    } else {
-      this.cards = this.dashboard.cards.filter((card) => {
-        return this.statusesCheked().indexOf(card.card_status) > -1;
-      });
-    }
+  makeFilter2() {
+    let auxGroups =
+      this.groupsStates.length === 0 ? this.groups : this.groupsStates;
+    let auxStatus =
+      this.statusesStates.length === 0
+        ? ['To Do', 'Doing', 'Done']
+        : this.statusesStates;
+    this.cards = this.dashboard.cards.filter((card) => {
+      return (
+        auxStatus.indexOf(card.card_status) > -1 &&
+        auxGroups.indexOf(card.card_group) > -1
+      );
+    });
   }
 
   makeFilterGroup() {
@@ -112,18 +109,6 @@ export class DashboardComponent implements OnInit {
         return this.groupsStates.indexOf(card.card_group) > -1;
       });
     }
-  }
-
-  statusesCheked() {
-    let result: any = [];
-    Object.keys(this.statusesState).forEach((value: any) => {
-      if (this.statusesState[value]) {
-        result.push(value);
-      }
-    });
-    console.log(result);
-
-    return result;
   }
 
   newGroup(groupName: string) {
