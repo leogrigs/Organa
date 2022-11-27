@@ -8,6 +8,7 @@ import { Card } from 'src/app/core/models/card.model';
 })
 export class CardComponent implements OnInit {
   @Input() card!: Card;
+  @Input() groups!: string[];
   @Output() OnDelete = new EventEmitter();
   @Output() OnEdit = new EventEmitter();
   @Output() OnEditStatus = new EventEmitter();
@@ -54,8 +55,8 @@ export class CardComponent implements OnInit {
     this.sendStatus(beforeCard, this.card);
   }
 
-  sendStatus(beforeCard: Card, actualCard: Card){
-    this.OnEditStatus.emit({before: beforeCard, after: actualCard});
+  sendStatus(beforeCard: Card, actualCard: Card) {
+    this.OnEditStatus.emit({ before: beforeCard, after: actualCard });
   }
 
   setStatusClass() {

@@ -14,7 +14,7 @@
     <span>{{ card.card_description }}</span>
   </div>
   <div class="card-group">
-    <span *ngIf="card.card_group">{{ card.card_group }}</span>
+    <span *ngIf="groups.includes(card.card_group)">{{ card.card_group }}</span>
   </div>
   <div class="card-bottom">
     <div class="card-status">

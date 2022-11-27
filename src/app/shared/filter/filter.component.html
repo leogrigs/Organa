@@ -9,7 +9,7 @@
     <button
       class="filter-new-button"
       (click)="newGroup()"
-      [disabled]="!this.innerValue"
+      [disabled]="!this.innerValue || this.validateGroup()"
     >
       + Criar
     </button>
@@ -30,16 +30,24 @@
   </div>
   <div class="filter-groups">
     <div class="filter-groups-group" *ngFor="let group of groups; index as i">
-      <input
-        type="checkbox"
-        class="filter-checkbox"
-        [id]="'filter-group-input_' + i"
-        (change)="valueChanges($event)"
-        [value]="group"
-      />
-      <label [for]="'filter-group-input_' + i" class="filter-label">{{
-        group
-      }}</label>
+      <div style="display: flex; align-items: strech">
+        <input
+          type="checkbox"
+          class="filter-checkbox"
+          [id]="'filter-group-input_' + i"
+          (change)="valueChanges($event)"
+          [value]="group"
+        />
+        <label [for]="'filter-group-input_' + i" class="filter-label">{{
+          group
+        }}</label>
+      </div>
+      <button
+        class="filter-groups-group-close"
+        (click)="deleteGroup(this.group)"
+      >
+        X
+      </button>
     </div>
   </div>
 </div>

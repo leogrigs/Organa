@@ -45,6 +45,7 @@
   }
 
   &-checkbox {
+    margin: 0;
     margin-right: 8px;
   }
 
@@ -55,10 +56,6 @@
     color: #252c32;
   }
 
-  &-groups-group {
-    margin-bottom: 4px;
-  }
-
   &-all-group {
     display: flex;
     align-items: center;
@@ -67,9 +64,16 @@
   &-groups-group {
     display: flex;
     align-items: center;
-    
+    justify-content: space-between;
+
     // width: 100%;
     padding: 8px;
     box-sizing: border-box;
+
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
   }
 }

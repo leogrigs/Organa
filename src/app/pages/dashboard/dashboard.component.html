@@ -1,9 +1,10 @@
 <div class="organa">
   <div class="filters">
     <app-filter
-      [groups]="dashboard.groups"
+      [groups]="this.groups"
       (OnNewGroup)="newGroup($event)"
       (OnFilterByStatus)="filterByStatus($event)"
+      (OnDeleteGroup)="openModal('deleteGroup', $event)"
     ></app-filter>
   </div>
   <div class="dashboard">
@@ -31,6 +32,7 @@
         <app-card
           *ngFor="let card of cards"
           [card]="card"
+          [groups]="this.groups"
           (OnDelete)="openModal('delete', $event)"
           (OnEdit)="openModal('edit', $event)"
           (OnEditStatus)="onStatusChange($event)"
@@ -70,6 +72,29 @@
       <button
         class="delete-button-cancel"
         (click)="closeModal(false, 'delete')"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</app-modal>
+<app-modal
+  (OnToggle)="closeModal($event, 'deleteGroup')"
+  *ngIf="this.showModalGroup"
+>
+  <div class="delete">
+    <h2 class="delete-title">Deseja mesmo excluir esse grupo?</h2>
+    <p class="delete-text">
+      Excluindo esse grupo você perderá as suas informações e não será possível
+      resgatá-la.
+    </p>
+    <div class="delete-button">
+      <button class="delete-button-confirm" (click)="onDeleteGroup()">
+        Confirmar
+      </button>
+      <button
+        class="delete-button-cancel"
+        (click)="closeModal(false, 'deleteGroup')"
       >
         Cancelar
       </button>
