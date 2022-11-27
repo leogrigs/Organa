@@ -9,6 +9,10 @@ export class FilterComponent implements OnInit {
   @Input() groups!: string[];
   @Output() OnNewGroup = new EventEmitter<string>();
   @Output() OnDeleteGroup = new EventEmitter<string>();
+  @Output() OnFilterByGroup = new EventEmitter<{
+    status: boolean;
+    value: string;
+  }>();
   @Output() OnFilterByStatus = new EventEmitter<{
     status: boolean;
     value: 'To Do' | 'Doing' | 'Done';
@@ -52,6 +56,13 @@ export class FilterComponent implements OnInit {
 
   valueChanges(event: any) {
     this.OnFilterByStatus.emit({
+      status: event.target.checked,
+      value: event.target.value,
+    });
+  }
+
+  valueChangesGroup(event: any) {
+    this.OnFilterByGroup.emit({
       status: event.target.checked,
       value: event.target.value,
     });

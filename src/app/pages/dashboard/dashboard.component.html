@@ -4,6 +4,7 @@
       [groups]="this.groups"
       (OnNewGroup)="newGroup($event)"
       (OnFilterByStatus)="filterByStatus($event)"
+      (OnFilterByGroup)="filterByStatusGroup($event)"
       (OnDeleteGroup)="openModal('deleteGroup', $event)"
     ></app-filter>
   </div>

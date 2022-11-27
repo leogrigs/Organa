@@ -33,6 +33,8 @@ export class DashboardComponent implements OnInit {
     Done: false,
   };
 
+  groupsStates: string[] = [];
+
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.dataService.dbDashboard.valueChanges().subscribe((dash) => {
       this.dashboard = dash[0];
@@ -71,6 +73,18 @@ export class DashboardComponent implements OnInit {
     this.makeFilter();
   }
 
+  filterByStatusGroup(object: { status: boolean; value: string }) {
+    let value = object.value;
+    let status = object.status;
+    if (status) {
+      this.groupsStates.push(value);
+    } else {
+      let index = this.groupsStates.indexOf(value);
+      this.groupsStates.splice(index, 1);
+    }
+    this.makeFilterGroup();
+  }
+
   makeFilter() {
     let allTrue = Object.values(this.statusesState).every(
       (status) => status === true
@@ -83,6 +97,19 @@ export class DashboardComponent implements OnInit {
     } else {
       this.cards = this.dashboard.cards.filter((card) => {
         return this.statusesCheked().indexOf(card.card_status) > -1;
+      });
+    }
+  }
+
+  makeFilterGroup() {
+    if (
+      this.groupsStates.length === 0 ||
+      this.groupsStates.length === this.groups.length
+    ) {
+      this.cards = this.dashboard.cards;
+    } else {
+      this.cards = this.dashboard.cards.filter((card) => {
+        return this.groupsStates.indexOf(card.card_group) > -1;
       });
     }
   }

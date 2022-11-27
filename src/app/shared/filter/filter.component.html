@@ -35,7 +35,7 @@
           type="checkbox"
           class="filter-checkbox"
           [id]="'filter-group-input_' + i"
-          (change)="valueChanges($event)"
+          (change)="valueChangesGroup($event)"
           [value]="group"
         />
         <label [for]="'filter-group-input_' + i" class="filter-label">{{
