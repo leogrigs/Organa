@@ -32,6 +32,8 @@ export class DashboardComponent implements OnInit {
     this.dataService.dbDashboard.valueChanges().subscribe((dash) => {
       this.dashboard = dash[0];
       this.cards = dash[0].cards;
+      this.makeFilter();
+
     });
   }
 

@@ -29,20 +29,17 @@
     </div>
   </div>
   <div class="filter-groups">
-    <app-accordion *ngFor="let group of groups" [accordionTitle]="group">
-      <div
-        class="filter-groups-group"
-        *ngFor="let status of statuses; index as i"
-      >
-        <input
-          type="checkbox"
-          class="filter-checkbox"
-          [id]="'filter-group-input_' + i"
-        />
-        <label [for]="'filter-group-input_' + i" class="filter-label">{{
-          status
-        }}</label>
-      </div>
-    </app-accordion>
+    <div class="filter-groups-group" *ngFor="let group of groups; index as i">
+      <input
+        type="checkbox"
+        class="filter-checkbox"
+        [id]="'filter-group-input_' + i"
+        (change)="valueChanges($event)"
+        [value]="group"
+      />
+      <label [for]="'filter-group-input_' + i" class="filter-label">{{
+        group
+      }}</label>
+    </div>
   </div>
 </div>

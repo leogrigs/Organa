@@ -56,7 +56,7 @@
   }
 
   &-groups-group {
-    margin-bottom: 12px;
+    margin-bottom: 4px;
   }
 
   &-all-group {
@@ -67,5 +67,9 @@
   &-groups-group {
     display: flex;
     align-items: center;
+    
+    // width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
   }
 }
