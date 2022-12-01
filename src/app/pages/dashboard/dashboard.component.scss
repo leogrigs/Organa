@@ -4,14 +4,14 @@
   display: flex;
   gap: 16px;
   height: 100vh;
+  @media (max-width: 1045px) {
+    flex-direction: column;
+  }
 }
 
 .filters {
   background: #f6f8f9;
   padding: 8px;
-  @media (max-width: 1045px) {
-    display: none;
-  }
 }
 
 .dashboard {
@@ -30,7 +30,7 @@
     justify-content: space-between;
     margin-bottom: 12px;
     gap: 8px;
-    @media (max-width: 665px) {
+    @media (max-width: 700px) {
       flex-direction: column;
     }
   }
@@ -55,7 +55,7 @@
       line-height: 24px;
       color: #9aa6ac;
 
-      @media (max-width: 665px) {
+      @media (max-width: 700px) {
         width: 100%;
       }
     }
@@ -75,7 +75,7 @@
 
     min-height: 38px;
 
-    @media (max-width: 665px) {
+    @media (max-width: 700px) {
       width: 100%;
     }
   }
@@ -87,6 +87,9 @@
     align-items: center;
     gap: 16px;
     padding: 16px;
+    @media (max-width: 700px) {
+      display: block;
+    }
   }
 
   &-container {
@@ -98,6 +101,7 @@
 
   @media (max-width: 1045px) {
     padding: 16px;
+    margin-top: 0;
   }
 }
 
@@ -106,7 +110,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 522px;
+  width: 100%;
   &-title {
     font-weight: 600;
     font-size: 24px;
