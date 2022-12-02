@@ -1,56 +1,87 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Card } from 'src/app/core/models/card.model';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input('cardStatus') cardStatus: string = 'To Do';
+  @Input() card!: Card;
+  @Input() groups!: string[];
+  @Output() OnDelete = new EventEmitter();
+  @Output() OnEdit = new EventEmitter();
+  @Output() OnEditStatus = new EventEmitter();
 
-  constructor() { }
+  arrowSource: string = '/assets/img/gray_arrow.svg';
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
-  nextStatus(){
-    switch (this.cardStatus) {
+  ngOnInit(): void {}
+
+  nextStatus() {
+    let beforeCard = this.card;
+    switch (this.card.card_status) {
       case 'To Do':
-        this.cardStatus = 'Doing'
+        this.card.card_status = 'Doing';
         break;
       case 'Doing':
-        this.cardStatus = 'Done'
+        this.card.card_status = 'Done';
         break;
       case 'Done':
-        this.cardStatus = 'To Do'
+        this.card.card_status = 'To Do';
         break;
       default:
         break;
     }
+    this.sendStatus(beforeCard, this.card);
   }
 
-  previousStatus(){
-    switch (this.cardStatus) {
+  previousStatus() {
+    let beforeCard = this.card;
+    switch (this.card.card_status) {
       case 'To Do':
-        this.cardStatus = 'Done'
+        this.card.card_status = 'Done';
         break;
       case 'Doing':
-        this.cardStatus = 'To Do'
+        this.card.card_status = 'To Do';
         break;
       case 'Done':
-        this.cardStatus = 'Doing'
+        this.card.card_status = 'Doing';
         break;
       default:
         break;
     }
+    this.sendStatus(beforeCard, this.card);
   }
 
-  setStatusClass(){
+  sendStatus(beforeCard: Card, actualCard: Card) {
+    this.OnEditStatus.emit({ before: beforeCard, after: actualCard });
+  }
+
+  setStatusClass() {
     return {
-      'card-status-text-todo': this.cardStatus === 'To Do',
-      'card-status-text-doing': this.cardStatus === 'Doing',
-      'card-status-text-done': this.cardStatus === 'Done',
-    }
+      'card-status-text-todo': this.card.card_status === 'To Do',
+      'card-status-text-doing': this.card.card_status === 'Doing',
+      'card-status-text-done': this.card.card_status === 'Done',
+    };
   }
 
+  setArrowSource() {
+    let color = '';
+
+    if (this.card.card_status === 'To Do') color = 'gray';
+    else if (this.card.card_status === 'Doing') color = 'blue';
+    else color = 'green';
+
+    let url = `/assets/img/${color}_arrow.svg`;
+    return url;
+  }
+
+  deleteCard() {
+    this.OnDelete.emit(this.card.card_title);
+  }
+  editCard() {
+    this.OnEdit.emit(this.card);
+  }
 }

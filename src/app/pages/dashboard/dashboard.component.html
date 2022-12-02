@@ -1,7 +1,104 @@
-<div class="dashboard">
-    <app-card></app-card>
-    <app-card></app-card>
-    <app-card></app-card>
-    <app-card></app-card>
-
+<div class="organa">
+  <div class="filters">
+    <app-filter
+      [groups]="this.groups"
+      (OnNewGroup)="newGroup($event)"
+      (OnFilterByStatus)="filterByStatus($event)"
+      (OnFilterByGroup)="filterByGroup($event)"
+      (OnDeleteGroup)="openModal('deleteGroup', $event)"
+    ></app-filter>
+  </div>
+  <div class="dashboard">
+    <h2 class="dashboard-title">Todas as tarefas</h2>
+    <div class="dashboard-upper">
+      <div class="dashboard-search">
+        <input
+          type="text"
+          class="dashboard-search-input"
+          placeholder="Pesquisar"
+          [(ngModel)]="filter"
+        />
+        <img
+          src="/assets/img/search.svg"
+          alt=""
+          class="dashboard-search-icon"
+        />
+      </div>
+      <button class="dashboard-new_card" (click)="openModal('create', '')">
+        + Adicionar tarefa
+      </button>
+    </div>
+    <div class="dashboard-container">
+      <div class="dashboard-cards">
+        <app-card
+          *ngFor="let card of cards"
+          [card]="card"
+          [groups]="this.groups"
+          (OnDelete)="openModal('delete', $event)"
+          (OnEdit)="openModal('edit', $event)"
+          (OnEditStatus)="onStatusChange($event)"
+        ></app-card>
+      </div>
+    </div>
+  </div>
 </div>
+<app-modal (OnToggle)="closeModal($event, 'create')" *ngIf="this.showModal">
+  <app-card-form
+    (OnSubmit)="onSubmit($event)"
+    [formTitle]="'Criar nova tarefa'"
+    [groups]="dashboard.groups"
+    [buttonTitle]="'CRIAR TAREFA'"
+  ></app-card-form>
+</app-modal>
+<app-modal (OnToggle)="closeModal($event, 'edit')" *ngIf="this.showModalEdit">
+  <app-card-form
+    (OnSubmit)="onEdit($event)"
+    [card]="actualCard"
+    [groups]="dashboard.groups"
+    [formTitle]="'Editar tarefa'"
+    [buttonTitle]="'EDITAR TAREFA'"
+  ></app-card-form>
+</app-modal>
+<app-modal (OnToggle)="closeModal($event, 'delete')" *ngIf="this.showModalDel">
+  <div class="delete">
+    <h2 class="delete-title">Deseja mesmo excluir essa tarefa?</h2>
+    <p class="delete-text">
+      Excluindo essa tarefa você perderá as suas informações e não será possível
+      resgatá-la.
+    </p>
+    <div class="delete-button">
+      <button class="delete-button-confirm" (click)="onDelete()">
+        Confirmar
+      </button>
+      <button
+        class="delete-button-cancel"
+        (click)="closeModal(false, 'delete')"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</app-modal>
+<app-modal
+  (OnToggle)="closeModal($event, 'deleteGroup')"
+  *ngIf="this.showModalGroup"
+>
+  <div class="delete">
+    <h2 class="delete-title">Deseja mesmo excluir esse grupo?</h2>
+    <p class="delete-text">
+      Excluindo esse grupo você perderá as suas informações e não será possível
+      resgatá-la.
+    </p>
+    <div class="delete-button">
+      <button class="delete-button-confirm" (click)="onDeleteGroup()">
+        Confirmar
+      </button>
+      <button
+        class="delete-button-cancel"
+        (click)="closeModal(false, 'deleteGroup')"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</app-modal>

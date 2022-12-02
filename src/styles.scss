@@ -1,7 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-body {
-    margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-// <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+body {
+  margin: 0;
+}
+@mixin button($background, $color, $width: 196px) {
+  border-radius: 4px;
+  border: none;
+  width: $width;
+  height: 32px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  background-color: $background;
+  color: $color;
+  cursor: pointer;
+}

@@ -1,0 +1,108 @@
+.filter {
+  width: 254px;
+  margin-top: 32px;
+
+  &-new {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+
+    &-input {
+      width: 135px;
+      height: 27px;
+      background: #ffffff;
+      border: 1px solid #dde2e4;
+      border-radius: 4px;
+      padding: 8px;
+      box-sizing: border-box;
+      @media (max-width: 1045px) {
+        width: 100%;
+      }
+    }
+
+    &-button {
+      width: 84px;
+      border: none;
+      background: #4094f7;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 24px;
+      color: #eeeeee;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: rgba(#4094f7, 0.5);
+      }
+
+      @media (max-width: 1045px) {
+        width: 200px;
+      }
+    }
+  }
+
+  &-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    // gap: 12px;
+    @media (max-width: 1045px) {
+      justify-content: start;
+      gap: 16px;
+    }
+  }
+
+  &-checkbox {
+    margin: 0;
+    margin-right: 8px;
+  }
+
+  &-label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #252c32;
+  }
+
+  &-all-group {
+    display: flex;
+    align-items: center;
+  }
+
+  &-groups {
+    &-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      // width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      gap: 8px;
+
+      button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      @media (max-width: 1045px) {
+        // min-width: 200px;
+      }
+    }
+    @media (max-width: 1045px) {
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+  }
+  @media (max-width: 1045px) {
+    width: 100%;
+  }
+}

@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent
-  ],
+  declarations: [HeaderComponent],
   imports: [
     CommonModule,
-    MatToolbarModule
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  exports: [HeaderComponent, FooterComponent]
+  exports: [HeaderComponent],
 })
-export class CoreModule { }
+export class CoreModule {}
